@@ -1,26 +1,47 @@
 # Create a second program that will read the file questions.txt, formatted as described above, and pose the questions to the user. 
 # The program will keep score of the number of questions answered correctly.
 
-quiz = open("questions.txt", 'r')
-
-
 letters = ["A.)", "B.)", "C.)", "D.)"]
 
-question = quiz.readline()
-print(question)
+linesRead = 0
 
-for x in range(0, 4):
-    answers = quiz.readline()
-    letter = letters[x]
-    print(letter, answers)
+score = 0
 
-answer = quiz.readline()
+quiz = open("questions.txt", 'r')
 
-userAnswer = input("What is the answer?"+'\n')
+lines = len(quiz.readlines())
 
-#if answer == userAnswer:
-    #print("Correct")
-#else:
-    #print("Incorrect")
+quiz.close()
+
+quiz = open("questions.txt", 'r')
+
+totalQuestions = 0
+
+while linesRead < lines:
+
+    ques = quiz.readline()
+    print(ques)
+    linesRead = linesRead + 1
+
+    for x in range(0, 4):
+        ans = quiz.readline()
+        letter = letters[x]
+        print(letter, ans)
+        linesRead = linesRead + 1
+
+    answer = quiz.read(1)
+    quiz.readline() #It kept on putting a space afterwards which would mess with the answer, so I had to read one character then read the rest so that it would move on to the next line and not put a space after it read the answer.
+    linesRead = linesRead + 1
+
+    userAnswer = input("What is the answer? Enter A, B, C, or D."+'\n')
+
+    if userAnswer == answer:
+        score = score + 1
+
+    totalQuestions = totalQuestions + 1
+
+percent = int((score / totalQuestions) * 100)
+
+print("You got", score, "/", totalQuestions, "questions correct. That's", percent, "%.")
 
 quiz.close()
