@@ -7,6 +7,8 @@ linesRead = 0
 
 score = 0
 
+validAnswer = False
+
 quiz = open("questions.txt", 'r')
 
 lines = len(quiz.readlines())
@@ -34,6 +36,13 @@ while linesRead < lines:
     linesRead = linesRead + 1
 
     userAnswer = input("What is the answer? Enter A, B, C, or D."+'\n')
+
+    while validAnswer == False:
+        if userAnswer != 'A' and userAnswer != 'B' and userAnswer != 'C' and userAnswer != 'D':
+            print("Please enter A, B, C, or D")
+            userAnswer = input()
+        else:
+            validAnswer = True
 
     if userAnswer == answer:
         score = score + 1

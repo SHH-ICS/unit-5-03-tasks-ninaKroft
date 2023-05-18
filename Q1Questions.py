@@ -7,6 +7,8 @@ prefix = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "ei
 
 questions = open("questions.txt", 'w')
 
+correct = False
+
 for x in range(0, numberOfQuestions):
     print("Please enter your", prefix[x], "question:")
     question = input()
@@ -18,7 +20,14 @@ for x in range(0, numberOfQuestions):
         questions.write(option+'\n')
 
     print("Which answer is correct? Enter A, B, C, or D.")
-    answer = input()
+    while correct == False:
+        answer = input()
+        if answer != 'A' and answer != 'B' and answer != 'C' and answer != 'D':
+            correct = False
+            print("Please enter A, B, C, or D.")
+        else:
+            correct = True
+
     questions.write(answer+'\n')
 
 print("Your questions are set! Head over to Q2Quiz.py to run your quiz.")
