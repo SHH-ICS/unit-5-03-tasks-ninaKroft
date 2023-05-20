@@ -10,6 +10,7 @@ questions = open("questions.txt", 'w')
 correct = False
 
 for x in range(0, numberOfQuestions):
+    correct = False
     print("Please enter your", prefix[x], "question:")
     question = input()
     questions.write(question +'\n')
